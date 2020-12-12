@@ -36,7 +36,7 @@ class BottomNavigatorBarItem extends StatelessWidget {
               : compactedContainerWidth;
 
           return InkWell(
-            //TODO: inkwell shape
+            borderRadius: BorderRadius.circular(20),
             onTap: () {
               routerBloc.changeRoute(this.route);
             },

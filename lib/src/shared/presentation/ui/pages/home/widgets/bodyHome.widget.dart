@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:peliculasApp/src/shared/application/router.bloc.dart';
 
 import 'package:peliculasApp/src/shared/infrastructure/inherited_widgets/sharedInheritedWidget.dart';
+import 'package:peliculasApp/src/shared/presentation/ui/pages/home/views/favorites.view.dart';
 
 import 'package:peliculasApp/src/shared/presentation/ui/pages/home/views/movies.view.dart';
 import 'package:peliculasApp/src/shared/presentation/ui/pages/home/views/series.view.dart';
@@ -46,6 +47,9 @@ class _BodyHomePageState extends State<BodyHomePage>
         break;
       case Routes.series:
         return SeriesView();
+        break;
+      case Routes.favorites:
+        return FavoritesView();
         break;
       default:
         return Moviesview();

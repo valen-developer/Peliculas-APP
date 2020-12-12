@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peliculasApp/src/media/domain/models/media-models/media.model.dart';
+import 'package:peliculasApp/src/shared/presentation/ui/pages/media/media.page.dart';
 
 class CustomCardWidget extends StatelessWidget {
   const CustomCardWidget({
@@ -9,6 +10,21 @@ class CustomCardWidget extends StatelessWidget {
 
   final MediaModel media;
 
+  _navigate(BuildContext context) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, _) {
+          return FadeTransition(
+            opacity: animation1,
+            child: MediaView(
+              media: this.media,
+            ),
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -16,7 +32,9 @@ class CustomCardWidget extends StatelessWidget {
     const double containerRadius = 15.0;
 
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        this._navigate(context);
+      },
       borderRadius: BorderRadius.circular(containerRadius),
       splashColor: Theme.of(context).primaryColor,
       highlightColor: Theme.of(context).cardColor.withOpacity(0.7),

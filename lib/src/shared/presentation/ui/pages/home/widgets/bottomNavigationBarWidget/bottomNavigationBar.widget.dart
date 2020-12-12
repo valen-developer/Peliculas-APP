@@ -4,7 +4,6 @@ import 'package:peliculasApp/src/shared/application/router.bloc.dart';
 
 import 'bottomNavigationBarItem.widget.dart';
 
-
 class CustomBottomNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

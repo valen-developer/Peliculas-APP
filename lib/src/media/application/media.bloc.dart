@@ -21,7 +21,7 @@ class MediaBloc {
     this.clearData();
   }
 
-  Future<List<MediaModel>> getPopular() async {
+  getPopular() async {
     if (this._loading) return [];
 
     _loading = true;

@@ -35,7 +35,7 @@ class _ListMediaState extends State<ListMedia> {
   Widget build(BuildContext context) {
     this.widget.mediaBloc.getPopular();
     return StreamBuilder(
-      stream: widget.mediaBloc.mediaStream,
+      stream: this.widget.mediaBloc.mediaStream,
       builder: (context, snapshot) {
         if (snapshot.hasError) return CustomErrorWidget();
         if (!snapshot.hasData) return LoadingWidget();
@@ -43,7 +43,6 @@ class _ListMediaState extends State<ListMedia> {
         this._scrollController.addListener(() {
           if (_scrollController.offset ==
               _scrollController.position.maxScrollExtent) {
-            print('Pedimos mas');
             this.widget.mediaBloc.getPopular();
           }
         });
