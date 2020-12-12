@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:peliculasApp/src/shared/application/router.bloc.dart';
-import 'package:peliculasApp/src/shared/presentation/ui/widgets/bottomNavigationBarWidget/bottomNavigationBarItem.widget.dart';
+
+import 'bottomNavigationBarItem.widget.dart';
+
 
 class CustomBottomNavigationBar extends StatelessWidget {
   @override

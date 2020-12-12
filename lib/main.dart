@@ -3,7 +3,7 @@ import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:peliculasApp/src/shared/application/router.bloc.dart';
 import 'package:peliculasApp/src/shared/presentation/themes/main.theme.dart';
 
-import 'src/shared/presentation/ui/home.page.dart';
+import 'src/shared/presentation/ui/pages/home/home.page.dart';
 
 void main() => runApp(MyApp());
 
