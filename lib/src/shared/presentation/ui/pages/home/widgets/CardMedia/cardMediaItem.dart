@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:peliculasApp/src/media/domain/models/media-models/media.model.dart';
+
+import 'package:peliculasApp/src/shared/infrastructure/inherited_widgets/sharedInheritedWidget.dart';
 import 'package:peliculasApp/src/shared/presentation/ui/pages/media/media.page.dart';
 
 class CustomCardWidget extends StatelessWidget {
@@ -11,14 +14,15 @@ class CustomCardWidget extends StatelessWidget {
   final MediaModel media;
 
   _navigate(BuildContext context) {
+    final currentRoute =
+        SharedInheritedWidget.of(context).routerBloc.currentRoute;
+
     Navigator.of(context).push(
       PageRouteBuilder(
         pageBuilder: (context, animation1, _) {
           return FadeTransition(
             opacity: animation1,
-            child: MediaView(
-              media: this.media,
-            ),
+            child: MediaView(media: this.media, routeFrom: currentRoute),
           );
         },
       ),
