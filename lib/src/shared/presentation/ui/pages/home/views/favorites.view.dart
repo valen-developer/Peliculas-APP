@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculasApp/src/shared/application/router.bloc.dart';
 
 import 'package:peliculasApp/src/shared/infrastructure/inherited_widgets/sharedInheritedWidget.dart';
 
@@ -18,10 +19,12 @@ class FavoritesView extends StatelessWidget {
         FavoriteMediaList(
           future: moviesFavoritesBloc.getAll(),
           title: 'Películas',
+          route: Routes.movies,
         ),
         FavoriteMediaList(
           future: seriesFavoritesBloc.getAll(),
           title: 'Series y TV',
+          route: Routes.series,
         ),
       ],
     );

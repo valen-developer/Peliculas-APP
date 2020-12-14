@@ -55,6 +55,10 @@ class MediaView extends StatelessWidget {
     final favoriteMediaBloc = this._favoritesBlocByRoute(context);
     final mediaBloc = this._mediaBlocByRoute(context);
     final size = MediaQuery.of(context).size;
+    
+    print(favoriteMediaBloc);
+    print(mediaBloc);
+
 
     return Scaffold(
       body: Container(
@@ -66,9 +70,20 @@ class MediaView extends StatelessWidget {
             SliverToBoxAdapter(
               child: SingleChildScrollView(
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     BodySectionWidget(media: media),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 40),
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        'Si te ha gustado ...',
+                        style: Theme.of(context)
+                            .textTheme
+                            .overline
+                            .copyWith(color: Colors.white.withOpacity(0.5)),
+                      ),
+                    ),
                     Container(
                       width: size.width,
                       height: size.height * 0.3,
@@ -94,4 +109,3 @@ class MediaView extends StatelessWidget {
     );
   }
 }
-

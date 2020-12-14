@@ -20,7 +20,7 @@ class BodySectionWidget extends StatelessWidget {
       children: [
         const SizedBox(height: 10),
         MediaTitleWidget(media: media),
-        const SizedBox(height: 10),
+        const SizedBox(height: 40),
         SipnasisContainerWidget(media: media),
       ],
     );
