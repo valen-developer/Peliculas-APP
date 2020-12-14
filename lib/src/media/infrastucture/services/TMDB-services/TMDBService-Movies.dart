@@ -56,7 +56,6 @@ class TMDBMoviesService extends TMDBService implements IMediaService {
 
   @override
   Future<List> getItems(Uri url) async {
-    print('Entra a perdir en service');
     try {
       http.Response resp = await http.get(url);
       if (resp.statusCode == 200) {

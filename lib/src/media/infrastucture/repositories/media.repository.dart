@@ -1,6 +1,7 @@
+import 'package:sqflite/sqlite_api.dart';
+
 import 'package:peliculasApp/src/media/domain/interfaces/media.repository.dart';
 import 'package:peliculasApp/src/media/domain/models/media-models/media.model.dart';
-import 'package:sqflite/sqlite_api.dart';
 
 class MediaRepositorySQFLite implements IMediaRepository {
   Database _db;

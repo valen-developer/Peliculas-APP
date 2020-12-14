@@ -4,6 +4,7 @@ import 'package:peliculasApp/src/media/application/mediaFavorites.bloc.dart';
 import 'package:peliculasApp/src/media/domain/models/media-models/media.model.dart';
 import 'package:peliculasApp/src/shared/application/router.bloc.dart';
 import 'package:peliculasApp/src/shared/infrastructure/inherited_widgets/sharedInheritedWidget.dart';
+import 'package:peliculasApp/src/shared/presentation/ui/pages/media/widgets/sliverAppBar/sliverAppBar.widget.dart';
 
 class MediaView extends StatelessWidget {
   const MediaView({
@@ -34,55 +35,23 @@ class MediaView extends StatelessWidget {
 
     final favoriteMediaBloc = this._favoritesBlocByRoute(context);
 
-    return Container(
-      color: Theme.of(context).backgroundColor,
-      child: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: size.height * 0.7,
-            flexibleSpace: FlexibleSpaceAppBar(media: this.media),
-            actions: [
-              FloatingActionButton(
-                child: Icon(Icons.favorite),
-                onPressed: () {
-                  if (favoriteMediaBloc != null)
-                    favoriteMediaBloc.save(this.media);
-                },
+    return Scaffold(
+      body: Container(
+        color: Theme.of(context).backgroundColor,
+        child: CustomScrollView(
+          slivers: [
+            MediaSliverAppBar(
+                favoriteMediaBloc: favoriteMediaBloc, media: media),
+            SliverToBoxAdapter(
+              child: SingleChildScrollView(
+                child: Container(
+                  height: size.height,
+                ),
               ),
-            ],
-          ),
-          SliverToBoxAdapter(
-            child: SingleChildScrollView(
-              child: Container(
-                height: size.height,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-}
-
-class FlexibleSpaceAppBar extends StatelessWidget {
-  const FlexibleSpaceAppBar({Key key, @required this.media}) : super(key: key);
-  final MediaModel media;
-
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
-    return Stack(
-      children: [
-        Positioned(
-          top: 0,
-          child: Container(
-            width: size.width,
-            height: size.height * 0.7,
-            color: Colors.red,
-          ),
+            )
+          ],
         ),
-      ],
+      ),
     );
   }
 }

@@ -44,14 +44,9 @@ class _BuildAppState extends State<BuildApp> {
     super.dispose();
   }
 
-  Future<Widget> _buildApp() async {
+  void _buildApp() async {
     TMDBMoviesService tmdbMoviesService = new TMDBMoviesService();
     TMDBSeriesService tmdbSeriesService = new TMDBSeriesService();
-
-    MediaBloc moviesBloc = new MediaBloc(tmdbMoviesService);
-    MediaBloc seriesBloc = new MediaBloc(tmdbSeriesService);
-
-    RouterBloc routerBloc = new RouterBloc();
 
     //Open DB
     InitMediaDataBase database = InitMediaDataBase(databaseName);
@@ -64,6 +59,11 @@ class _BuildAppState extends State<BuildApp> {
         new MediaRepositorySQFLite(database.db, seriesTableName);
 
     //Build Blocs
+    MediaBloc moviesBloc = new MediaBloc(tmdbMoviesService);
+    MediaBloc seriesBloc = new MediaBloc(tmdbSeriesService);
+
+    RouterBloc routerBloc = new RouterBloc();
+    
     MediaFavoritesBloc moviesFavoritesBloc =
         new MediaFavoritesBloc(moviesRepository);
     MediaFavoritesBloc seriesFavoritesBloc =
