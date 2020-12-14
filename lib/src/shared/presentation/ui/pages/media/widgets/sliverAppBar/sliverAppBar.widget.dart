@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:peliculasApp/src/media/application/mediaFavorites.bloc.dart';
 import 'package:peliculasApp/src/media/domain/models/media-models/media.model.dart';
+import 'package:peliculasApp/src/shared/presentation/ui/pages/media/widgets/sliverAppBar/appBarButton.widget.dart';
 
 class MediaSliverAppBar extends StatefulWidget {
   const MediaSliverAppBar({
@@ -81,70 +82,48 @@ class _MediaSliverAppBarState extends State<MediaSliverAppBar> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    final posterPathImageHeight = size.height * 0.2;
-    final posterPathImageWidth = posterPathImageHeight * 0.8;
-    final BorderRadius posterBorderRadius = BorderRadius.circular(20);
-
-    final backdropPathImageHeight = size.height * 0.3;
-
-    final expandedAppBarHeight =
-        backdropPathImageHeight + (posterPathImageHeight / 2);
+    final headerBorderRadius = BorderRadius.only(
+        bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30));
 
     return SliverAppBar(
       pinned: true,
-      expandedHeight: expandedAppBarHeight,
+      expandedHeight: size.height * 0.6,
       collapsedHeight: size.height * 0.1,
       backgroundColor: Colors.transparent,
-      flexibleSpace: Stack(
-        children: [
-          Positioned(
-            top: 0,
-            child: Container(
-              width: size.width,
-              height: size.height * 0.3,
-              child: ClipRRect(
-                child: Image.network(
-                  this.widget.media.backdropPath.valueWithHttp,
-                  alignment: Alignment.topCenter,
-                  fit: BoxFit.cover,
-                ),
-              ),
+      flexibleSpace: Container(
+        child: ClipRRect(
+          borderRadius: headerBorderRadius,
+          child: Hero(
+            tag: '${this.widget.media.id.value}',
+            child: Image.network(
+              this.widget.media.posterPath.valueWithHttp,
+              fit: BoxFit.cover,
+              alignment: Alignment.center,
             ),
           ),
-          Positioned(
-            top: size.height * 0.3 - (posterPathImageHeight / 2),
-            right: 30,
-            child: Container(
-              width: posterPathImageWidth,
-              height: posterPathImageHeight,
-              decoration: BoxDecoration(
-                  borderRadius: posterBorderRadius,
-                  boxShadow: [BoxShadow(blurRadius: 20)]),
-              child: ClipRRect(
-                borderRadius: posterBorderRadius,
-                child: Hero(
-                  tag: '${this.widget.media.id.value}',
-                  child: Image.network(
-                    this.widget.media.posterPath.valueWithHttp,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+        ),
+      ),
+      leading: AppBarButton(
+        icon: Icon(Icons.keyboard_arrow_left, size: 45),
+        margin: const EdgeInsets.only(left: 3),
+        padding: 0,
+        onTap: () {
+          Navigator.pop(context);
+        },
       ),
       actions: [
-        IconButton(
-          icon: (isMediaFavorite)
-              ? Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                )
-              : Icon(Icons.favorite_outline),
-          onPressed: () async {
+        AppBarButton(
+          icon: Icon(
+            (isMediaFavorite) ? Icons.favorite : Icons.favorite_outline,
+            color: (isMediaFavorite) ? Colors.red : Colors.white,
+          ),
+          margin: const EdgeInsets.only(right: 3),
+          onTap: () async {
             bool done = await this._onFavoritePressed();
             this._checkIfFavorite();
-            Scaffold.of(context).showSnackBar(_buildSnackBar(done));
+            Scaffold.of(context).showSnackBar(
+              _buildSnackBar(done),
+            );
           },
         ),
       ],

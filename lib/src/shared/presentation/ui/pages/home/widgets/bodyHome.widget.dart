@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:peliculasApp/src/shared/application/router.bloc.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:peliculasApp/src/media/application/media.bloc.dart';
 import 'package:peliculasApp/src/media/application/mediaFavorites.bloc.dart';
 

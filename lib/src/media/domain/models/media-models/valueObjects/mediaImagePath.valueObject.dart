@@ -6,5 +6,7 @@ class MediaImagePath {
   }
 
   String get value => this._value;
-  String get valueWithHttp => 'https://image.tmdb.org/t/p/w500${this._value}';
+  String get valueWithHttp => (this.value != null)
+      ? 'https://image.tmdb.org/t/p/w500${this._value}'
+      : 'https://library.ucf.edu/wp-content/uploads/sites/5/2015/08/photo-not-available.jpg';
 }

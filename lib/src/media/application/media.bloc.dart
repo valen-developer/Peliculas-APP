@@ -33,6 +33,11 @@ class MediaBloc {
     _loading = false;
   }
 
+  Future<List<MediaModel>> getRecommendByID(int id) async {
+    List jsonList = await this._iMediaService.getRecommendedById(id);
+    return MediaModelList.fromJsonList(jsonList).medias;
+  }
+
   void clearData() {
     _page = 0;
     _media = [];
